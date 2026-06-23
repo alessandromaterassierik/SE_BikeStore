@@ -32,6 +32,8 @@ class View:
         # Riga 1
         self.dd_category = ft.Dropdown(label="Categoria", width=200) # TODO: Gestire il dropdown
 
+        self.controller.populate_dd_category()
+
         self.dp1 = ft.DatePicker(
             on_change=lambda e: print(f"Giorno selezionato: {self.dp1.value}"),
             on_dismiss=lambda e: print("Data non selezionata")
@@ -62,9 +64,9 @@ class View:
                       alignment=ft.MainAxisAlignment.CENTER)
 
         # Riga 2
-        self.txt_lunghezza_cammino = ft.TextField(label="Lunghezza Cammino", width=120)
-        self.dd_prodotto_iniziale = ft.Dropdown(label="Prodotto Iniziale", width=350) # TODO: Gestire il dropdown
-        self.dd_prodotto_finale = ft.Dropdown(label="Prodotto Finale", width=350) # TODO: Gestire il dropdown
+        self.txt_lunghezza_cammino = ft.TextField(label="Lunghezza Cammino", width=120, on_change=self.controller.handle_cerca_cammino)
+        self.dd_prodotto_iniziale = ft.Dropdown(label="Prodotto Iniziale", width=350, on_change=self.controller.handle_cerca_cammino) # TODO: Gestire il dropdown
+        self.dd_prodotto_finale = ft.Dropdown(label="Prodotto Finale", width=350, on_change=self.controller.handle_cerca_cammino) # TODO: Gestire il dropdown
 
         self.pulsante_cerca_cammino = ft.ElevatedButton(text="Cerca", on_click=self.controller.handle_cerca_cammino, width=120)
 
